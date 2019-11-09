@@ -1,0 +1,24 @@
+language: python
+
+python:
+  - "3.6"
+
+before_install:
+  - python --version
+  - pip install -U pip
+  - pip install -U pytest
+  - pip install -U xmltodict
+  - pip install -U black
+  - pip install -U responses
+
+install:
+  - pip install ".[test]" .
+
+jobs:
+  include:
+    - stage: run unit tests
+      python: 3.6
+      script: pytest
+    - stage: test black code formatting
+      python: 3.6
+      script: black --check nxos-health-check/
