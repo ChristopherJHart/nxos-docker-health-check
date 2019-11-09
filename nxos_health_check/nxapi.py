@@ -12,7 +12,7 @@ class NXAPI:
         requests.packages.urllib3.disable_warnings(
             requests.packages.urllib3.exceptions.InsecureRequestWarning
         )
-    
+
     def _send_request(self, payload):
         headers = {
             "content-type": "application/json",
@@ -21,15 +21,12 @@ class NXAPI:
             self.url,
             data=json.dumps(payload),
             headers=headers,
-            auth=(
-                self.username,
-                self.password
-            ),
-            verify=False
+            auth=(self.username, self.password),
+            verify=False,
         )
         response.raise_for_status()
         return response.json()
-    
+
     def _format_show_command_payload(self, cmd):
         payload = {
             "ins_api": {
@@ -42,7 +39,7 @@ class NXAPI:
             }
         }
         return payload
-    
+
     def send_show_command(self, command):
         payload = self._format_show_command_payload(command)
         return self._send_request(payload)

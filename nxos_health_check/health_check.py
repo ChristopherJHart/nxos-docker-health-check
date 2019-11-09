@@ -9,7 +9,9 @@ from nxapi import NXAPI
 __author__ = "Christopher Hart"
 __email__ = "chart2@cisco.com"
 __copyright__ = "Copyright (c) 2019 Cisco Systems. All rights reserved."
-__credits__ = ["Christopher Hart",]
+__credits__ = [
+    "Christopher Hart",
+]
 __license__ = """
 ################################################################################
 # Copyright (c) 2019 Cisco and/or its affiliates.
@@ -34,6 +36,7 @@ NXAPI_USERNAME = os.getenv("NXAPI_USERNAME")
 NXAPI_PASSWORD = os.getenv("NXAPI_PASSWORD")
 DEBUG = os.getenv("DEBUG")
 
+
 def main():
     log.info("[INIT] Initializing health check")
     log.info("[VAR] IP: %s", NXAPI_IP)
@@ -42,6 +45,7 @@ def main():
     nxapi_conn = NXAPI(NXAPI_IP, NXAPI_USERNAME, NXAPI_PASSWORD)
     output = nxapi_conn.send_show_command("show module")
     log.info(output)
+
 
 def configure_logging(debug_enabled):
     default_cfg = {
@@ -65,20 +69,21 @@ def configure_logging(debug_enabled):
                 "class": "logging.handlers.RotatingFileHandler",
                 "filename": "{}.log".format(__name__),
                 "maxBytes": 10000000,
-            }
+            },
         },
         "loggers": {
             __name__: {
                 "handlers": ["console", "logfile"],
                 "level": "INFO",
-                "propagate": False
+                "propagate": False,
             },
-        }
+        },
     }
     if debug_enabled:
         default_cfg["loggers"][__name__]["level"] = "DEBUG"
     logging.config.dictConfig(default_cfg)
     return logging.getLogger(__name__)
+
 
 log = configure_logging(DEBUG)
 
