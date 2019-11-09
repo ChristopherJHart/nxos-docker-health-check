@@ -21,4 +21,4 @@ jobs:
       script: pytest
     - stage: test black code formatting
       python: 3.6
-      script: black --check nxos-health-check/
+      script: black --check nxos_health_check/
