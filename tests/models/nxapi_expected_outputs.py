@@ -1,4 +1,4 @@
-NXAPI_SHOW_MODULE_OUTPUT = {
+NXAPI_SHOW_VERSION_OUTPUT = {
     "ins_api": {
         "type": "cli_show",
         "version": "1.0",
@@ -45,7 +45,7 @@ NXAPI_SHOW_MODULE_OUTPUT = {
     }
 }
 
-NXAPI_SHOW_VERSION_OUTPUT = {
+NXAPI_SHOW_MODULE_TOR_OUTPUT = {
     "ins_api": {
         "type": "cli_show",
         "version": "1.0",
@@ -87,4 +87,323 @@ NXAPI_SHOW_VERSION_OUTPUT = {
             }
         },
     }
+}
+
+NXAPI_SHOW_MODULE_EOR_OUTPUT = {
+  "ins_api": {
+    "type": "cli_show",
+    "version": "1.0",
+    "sid": "eoc",
+    "outputs": {
+      "output": {
+        "input": "show module",
+        "msg": "Success",
+        "code": "200",
+        "body": {
+          "TABLE_modwwninfo": {
+            "ROW_modwwninfo": [
+              {
+                "modwwn": 1,
+                "sw": "7.0(3)I7(5a)",
+                "hw": "1.3",
+                "slottype": "LC1"
+              },
+              {
+                "modwwn": 3,
+                "sw": "7.0(3)I7(5a)",
+                "hw": "1.4",
+                "slottype": "LC3"
+              },
+              {
+                "modwwn": 4,
+                "sw": "7.0(3)I7(5a)",
+                "hw": "2.1",
+                "slottype": "LC4"
+              },
+              {
+                "modwwn": 21,
+                "sw": "7.0(3)I7(5a)",
+                "hw": "1.2",
+                "slottype": "FM1"
+              },
+              {
+                "modwwn": 22,
+                "sw": "7.0(3)I7(5a)",
+                "hw": "1.2",
+                "slottype": "FM2"
+              },
+              {
+                "modwwn": 23,
+                "sw": "7.0(3)I7(5a)",
+                "hw": "1.2",
+                "slottype": "FM3"
+              },
+              {
+                "modwwn": 24,
+                "sw": "7.0(3)I7(5a)",
+                "hw": "1.2",
+                "slottype": "FM4"
+              },
+              {
+                "modwwn": 25,
+                "sw": "7.0(3)I7(5a)",
+                "hw": "1.2",
+                "slottype": "FM5"
+              },
+              {
+                "modwwn": 26,
+                "sw": "7.0(3)I7(5a)",
+                "hw": "1.2",
+                "slottype": "FM6"
+              },
+              {
+                "modwwn": 27,
+                "sw": "7.0(3)I7(5a)",
+                "hw": "1.5",
+                "slottype": "SUP1"
+              },
+              {
+                "modwwn": 28,
+                "sw": "7.0(3)I7(5a)",
+                "hw": "1.0",
+                "slottype": "SUP2"
+              },
+              {
+                "modwwn": 29,
+                "sw": "7.0(3)I7(5a)",
+                "hw": "1.4",
+                "slottype": "SC1"
+              },
+              {
+                "modwwn": 30,
+                "sw": "7.0(3)I7(5a)",
+                "hw": "1.4",
+                "slottype": "SC2"
+              }
+            ]
+          },
+          "TABLE_modmacinfo": {
+            "ROW_modmacinfo": [
+              {
+                "modmac": 1,
+                "mac": " 80-e0-1d-34-df-98 to 80-e0-1d-34-e0-2b  ",
+                "serialnum": "SAL1925HAEX"
+              },
+              {
+                "modmac": 3,
+                "mac": " 18-8b-9d-4d-1b-6c to 18-8b-9d-4d-1b-af  ",
+                "serialnum": "SAL1927J5EH"
+              },
+              {
+                "modmac": 4,
+                "mac": " 18-8b-9d-4c-c3-bc to 18-8b-9d-4c-c3-ff  ",
+                "serialnum": "SAL1924GNNL"
+              },
+              {
+                "modmac": 21,
+                "mac": " NA ",
+                "serialnum": "SAL1926HYQY"
+              },
+              {
+                "modmac": 22,
+                "mac": " NA ",
+                "serialnum": "SAL1926HYKY"
+              },
+              {
+                "modmac": 23,
+                "mac": " NA ",
+                "serialnum": "SAL1926HPP2"
+              },
+              {
+                "modmac": 24,
+                "mac": " NA ",
+                "serialnum": "SAL1926HYJF"
+              },
+              {
+                "modmac": 25,
+                "mac": " NA ",
+                "serialnum": "SAL1926HYPV"
+              },
+              {
+                "modmac": 26,
+                "mac": " NA ",
+                "serialnum": "SAL1926HYF2"
+              },
+              {
+                "modmac": 27,
+                "mac": " 64-f6-9d-06-b9-b8 to 64-f6-9d-06-b9-c9  ",
+                "serialnum": "SAL1922FV75"
+              },
+              {
+                "modmac": 28,
+                "mac": " c0-67-af-a0-e0-b6 to c0-67-af-a0-e0-c7  ",
+                "serialnum": "SAL1747GLRM"
+              },
+              {
+                "modmac": 29,
+                "mac": " NA ",
+                "serialnum": "SAL1926J30F"
+              },
+              {
+                "modmac": 30,
+                "mac": " NA ",
+                "serialnum": "SAL1926J2X6"
+              }
+            ]
+          },
+          "TABLE_modinfo": {
+            "ROW_modinfo": [
+              {
+                "modinf": 1,
+                "ports": 36,
+                "modtype": "36p 40G Ethernet Module",
+                "model": "N9K-X9636PQ",
+                "status": "ok"
+              },
+              {
+                "modinf": 3,
+                "ports": 52,
+                "modtype": "48x1/10G SFP+ 4x40G Ethernet Module",
+                "model": "N9K-X9564PX",
+                "status": "ok"
+              },
+              {
+                "modinf": 4,
+                "ports": 52,
+                "modtype": "48x1/10G-T 4x40G Ethernet Module",
+                "model": "N9K-X9464TX",
+                "status": "ok"
+              },
+              {
+                "modinf": 21,
+                "ports": 0,
+                "modtype": "Fabric Module",
+                "model": "N9K-C9504-FM",
+                "status": "ok"
+              },
+              {
+                "modinf": 22,
+                "ports": 0,
+                "modtype": "Fabric Module",
+                "model": "N9K-C9504-FM",
+                "status": "ok"
+              },
+              {
+                "modinf": 23,
+                "ports": 0,
+                "modtype": "Fabric Module",
+                "model": "N9K-C9504-FM",
+                "status": "ok"
+              },
+              {
+                "modinf": 24,
+                "ports": 0,
+                "modtype": "Fabric Module",
+                "model": "N9K-C9504-FM",
+                "status": "ok"
+              },
+              {
+                "modinf": 25,
+                "ports": 0,
+                "modtype": "Fabric Module",
+                "model": "N9K-C9504-FM",
+                "status": "ok"
+              },
+              {
+                "modinf": 26,
+                "ports": 0,
+                "modtype": "Fabric Module",
+                "model": "N9K-C9504-FM",
+                "status": "ok"
+              },
+              {
+                "modinf": 27,
+                "ports": 0,
+                "modtype": "Supervisor Module",
+                "model": "N9K-SUP-A",
+                "status": "active *"
+              },
+              {
+                "modinf": 28,
+                "ports": 0,
+                "modtype": "Supervisor Module",
+                "model": "N9K-SUP-A",
+                "status": "ha-standby"
+              },
+              {
+                "modinf": 29,
+                "ports": 0,
+                "modtype": "System Controller",
+                "model": "N9K-SC-A",
+                "status": "standby"
+              },
+              {
+                "modinf": 30,
+                "ports": 0,
+                "modtype": "System Controller",
+                "model": "N9K-SC-A",
+                "status": "active"
+              }
+            ]
+          },
+          "TABLE_moddiaginfo": {
+            "ROW_moddiaginfo": [
+              {
+                "mod": 1,
+                "diagstatus": "Pass"
+              },
+              {
+                "mod": 3,
+                "diagstatus": "Pass"
+              },
+              {
+                "mod": 4,
+                "diagstatus": "Pass"
+              },
+              {
+                "mod": 21,
+                "diagstatus": "Pass"
+              },
+              {
+                "mod": 22,
+                "diagstatus": "Pass"
+              },
+              {
+                "mod": 23,
+                "diagstatus": "Pass"
+              },
+              {
+                "mod": 24,
+                "diagstatus": "Pass"
+              },
+              {
+                "mod": 25,
+                "diagstatus": "Pass"
+              },
+              {
+                "mod": 26,
+                "diagstatus": "Pass"
+              },
+              {
+                "mod": 27,
+                "diagstatus": "Pass"
+              },
+              {
+                "mod": 28,
+                "diagstatus": "Pass"
+              },
+              {
+                "mod": 29,
+                "diagstatus": "Pass"
+              },
+              {
+                "mod": 30,
+                "diagstatus": "Pass"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
 }
