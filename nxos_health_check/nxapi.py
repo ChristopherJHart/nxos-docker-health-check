@@ -32,7 +32,11 @@ class NXAPI:
             )
         except requests.exceptions.ConnectionError as exc:
             if "Connection refused" in str(exc):
-                raise self.ConnectionRefused("Could not connect to NX-API for device {}! Verify that `feature nxapi` is configured on device".format(self.ip))
+                raise self.ConnectionRefused(
+                    "Could not connect to NX-API for device {}! Verify that `feature nxapi` is configured on device".format(
+                        self.ip
+                    )
+                )
         response.raise_for_status()
         return response.json()
 
@@ -58,8 +62,10 @@ class NXAPI:
 
     def _get_model_from_json(self, json_output):
         if self._verify_successful_nxapi_output(json_output):
-            mod_info = json_output["ins_api"]["outputs"]["output"]["body"]["TABLE_modinfo"]["ROW_modinfo"]
-            # End of Row (Nexus 9500) platforms return ROW_modinfo output as a list. Top of Rack 
+            mod_info = json_output["ins_api"]["outputs"]["output"]["body"][
+                "TABLE_modinfo"
+            ]["ROW_modinfo"]
+            # End of Row (Nexus 9500) platforms return ROW_modinfo output as a list. Top of Rack
             # (Nexus 9200, 9300, etc.) platforms return ROW_modinfo output as a dictionary. We must
             # be able to handle both scenarios.
             if isinstance(mod_info, list):
@@ -76,7 +82,9 @@ class NXAPI:
 
     def _get_nxos_version_from_json(self, json_output):
         if self._verify_successful_nxapi_output(json_output):
-            mod_info = json_output["ins_api"]["outputs"]["output"]["body"]["TABLE_modwwninfo"]["ROW_modwwninfo"]
+            mod_info = json_output["ins_api"]["outputs"]["output"]["body"][
+                "TABLE_modwwninfo"
+            ]["ROW_modwwninfo"]
             # End of Row (Nexus 9500) platforms return ROW_modwwninfo output as a list. Top of Rack
             # (Nexus 9200, 9300, etc.) platforms return ROW_modwwwninfo output as a dictionary. We must
             # be able to handle both scenarios.
@@ -92,7 +100,9 @@ class NXAPI:
 
     def _get_module_diagnostic_status_from_json(self, json_output):
         if self._verify_successful_nxapi_output(json_output):
-            mod_diag_info = json_output["ins_api"]["outputs"]["output"]["body"]["TABLE_moddiaginfo"]["ROW_moddiaginfo"]
+            mod_diag_info = json_output["ins_api"]["outputs"]["output"]["body"][
+                "TABLE_moddiaginfo"
+            ]["ROW_moddiaginfo"]
             # End of Row (Nexus 9500) platforms return ROW_modwwninfo output as a list. Top of Rack
             # (Nexus 9200, 9300, etc.) platforms return ROW_modwwwninfo output as a dictionary. We must
             # be able to handle both scenarios.
@@ -120,7 +130,7 @@ class NXAPI:
         self._get_model_from_json(sh_mod)
         self._get_nxos_version_from_json(sh_mod)
         self._get_module_diagnostic_status_from_json(sh_mod)
-    
+
     def check_device_error_counters(self):
         interface_data = {}
         # To get accurate information, we need to get both error counters as well as normal counters for each interface.
@@ -128,7 +138,9 @@ class NXAPI:
         # First, let's get normal counters and populate our interface data
         counts = self.send_show_command("show interface counters")
         # These are split in two groups - RX, and TX. Let's start with RX
-        returned_rx_count_info = counts["ins_api"]["outputs"]["output"]["body"]["TABLE_rx_counters"]["ROW_rx_counters"]
+        returned_rx_count_info = counts["ins_api"]["outputs"]["output"]["body"][
+            "TABLE_rx_counters"
+        ]["ROW_rx_counters"]
         # This data looks like this:
         # [
         #   {
@@ -154,9 +166,11 @@ class NXAPI:
                     # Remove redundant interface name information
                     continue
                 interface_data[intf_data["interface_rx"]]["normal"][key] = value
-                
+
         # Now, let's do TX
-        returned_tx_count_info = counts["ins_api"]["outputs"]["output"]["body"]["TABLE_tx_counters"]["ROW_tx_counters"]
+        returned_tx_count_info = counts["ins_api"]["outputs"]["output"]["body"][
+            "TABLE_tx_counters"
+        ]["ROW_tx_counters"]
         # This data looks like this:
         # [
         #   {
@@ -178,7 +192,9 @@ class NXAPI:
                 interface_data[intf_data["interface_tx"]]["normal"][key] = value
         # Next, let's do error counters.
         count_errs = self.send_show_command("show interface counters errors")
-        returned_err_info = count_errs["ins_api"]["outputs"]["output"]["body"]["TABLE_interface"]["ROW_interface"]
+        returned_err_info = count_errs["ins_api"]["outputs"]["output"]["body"][
+            "TABLE_interface"
+        ]["ROW_interface"]
         # This data looks like this for any single interface:
         # [
         #   {
@@ -221,10 +237,14 @@ class NXAPI:
                 interface_data[intf_data["interface"]]["errors"][key] = value
         # We have all the information we need!
         self.interfaces = interface_data
-    
+
     def check_copp_counters(self):
-        copp_counters = self.send_show_command("show policy-map interface control-plane")
-        returned_copp_info = copp_counters["ins_api"]["outputs"]["output"]["body"]["TABLE_cmap"]["ROW_cmap"]
+        copp_counters = self.send_show_command(
+            "show policy-map interface control-plane"
+        )
+        returned_copp_info = copp_counters["ins_api"]["outputs"]["output"]["body"][
+            "TABLE_cmap"
+        ]["ROW_cmap"]
         for cmap in returned_copp_info:
             cmap_name = cmap["cmap-name-out"]
             self.copp_counters[cmap_name] = {}
@@ -239,13 +259,13 @@ class NXAPI:
                     if "conform-bytes" in slot.keys():
                         self.copp_counters[cmap_name][str(slot["slot-no-out"])] = {
                             "conform_bytes": slot["conform-bytes"],
-                            "violate_bytes": slot["violate-bytes"]
+                            "violate_bytes": slot["violate-bytes"],
                         }
                     elif "conform-pkts" in slot.keys():
                         # We don't really care about packets vs. bytes here - we care about non-zero values
                         self.copp_counters[cmap_name][str(slot["slot-no-out"])] = {
                             "conform_bytes": slot["conform-pkts"],
-                            "violate_bytes": slot["violate-pkts"]
+                            "violate_bytes": slot["violate-pkts"],
                         }
             elif isinstance(slot_info, dict):
                 # If platform is ToR...
@@ -253,13 +273,13 @@ class NXAPI:
                 if "conform-bytes" in slot_info.keys():
                     self.copp_counters[cmap_name][str(slot_info["slot-no-out"])] = {
                         "conform_bytes": slot_info["conform-bytes"],
-                        "violate_bytes": slot_info["violate-bytes"]
+                        "violate_bytes": slot_info["violate-bytes"],
                     }
                 elif "conform-pkts" in slot_info.keys():
                     # We don't really care about packets vs. bytes here - we care about non-zero values
                     self.copp_counters[cmap_name][str(slot_info["slot-no-out"])] = {
                         "conform_bytes": slot_info["conform-pkts"],
-                        "violate_bytes": slot_info["violate-pkts"]
+                        "violate_bytes": slot_info["violate-pkts"],
                     }
 
     class ConnectionRefused(Exception):

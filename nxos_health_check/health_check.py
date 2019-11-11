@@ -12,10 +12,7 @@ __author__ = "Christopher Hart, Yogesh Ramdoss"
 __maintainer__ = "Christopher Hart"
 __email__ = "chart2@cisco.com"
 __copyright__ = "Copyright (c) 2019 Cisco Systems. All rights reserved."
-__credits__ = [
-    "Christopher Hart",
-    "Yogesh Ramdoss"
-]
+__credits__ = ["Christopher Hart", "Yogesh Ramdoss"]
 __license__ = """
 ################################################################################
 # Copyright (c) 2019 Cisco and/or its affiliates.
@@ -47,13 +44,20 @@ def main():
     analyze_configuration(devices, credentials)
     log.info("[HLTH] Performing health check on %s devices", len(devices))
     for device in devices:
-        nxapi_conn = NXAPI(device["ip"], credentials["username"], credentials["password"])
+        nxapi_conn = NXAPI(
+            device["ip"], credentials["username"], credentials["password"]
+        )
         # Verifies:
         # - Device model/modules
         # - Device NX-OS software release
         # - Device module diagnostic tests have passed
         nxapi_conn.check_device_modules()
-        log.info("[DEV] Device with IP %s is a %s running NX-OS %s", nxapi_conn.ip, nxapi_conn.model, nxapi_conn.nxos_version)
+        log.info(
+            "[DEV] Device with IP %s is a %s running NX-OS %s",
+            nxapi_conn.ip,
+            nxapi_conn.model,
+            nxapi_conn.nxos_version,
+        )
         if nxapi_conn.hw_diags_passed:
             log.info("[DEV] \tDiagnostics passing: %s", nxapi_conn.hw_diags_passed)
         elif not nxapi_conn.hw_diags_passed:
@@ -62,6 +66,7 @@ def main():
         report_interfaces(nxapi_conn.interfaces)
         nxapi_conn.check_copp_counters()
         report_copp_counters(nxapi_conn.copp_counters)
+
 
 def analyze_configuration(devices, credentials, filename=CFG_FILENAME):
     config = configparser.ConfigParser()
@@ -72,6 +77,7 @@ def analyze_configuration(devices, credentials, filename=CFG_FILENAME):
     credentials["username"] = config["Credentials"]["username"]
     credentials["password"] = config["Credentials"]["password"]
 
+
 def report_interfaces(interfaces):
     issue_found = False
     for interface in interfaces.keys():
@@ -79,9 +85,15 @@ def report_interfaces(interfaces):
             cnt = interfaces[interface]["errors"][counter_name]
             if cnt != 0:
                 issue_found = True
-                log.error("[DEV] \tInterface %s error counter %s: %s", interface, counter_name, cnt)
+                log.error(
+                    "[DEV] \tInterface %s error counter %s: %s",
+                    interface,
+                    counter_name,
+                    cnt,
+                )
     if not issue_found:
         log.info("[DEV] \tNo non-zero interface error counters")
+
 
 def report_copp_counters(counters):
     issue_found = False
@@ -90,9 +102,15 @@ def report_copp_counters(counters):
             violations = int(counters[cmap][module]["violate_bytes"])
             if violations != 0:
                 issue_found = True
-                log.error("[DEV] \tCoPP violation %s on module %s: %s", cmap, module, violations)
+                log.error(
+                    "[DEV] \tCoPP violation %s on module %s: %s",
+                    cmap,
+                    module,
+                    violations,
+                )
     if not issue_found:
         log.info("[DEV] \tNo non-zero CoPP violation counters")
+
 
 def configure_logging(debug_enabled):
     default_cfg = {
