@@ -284,4 +284,3 @@ class NXAPI:
 
     class ConnectionRefused(Exception):
         pass
-
