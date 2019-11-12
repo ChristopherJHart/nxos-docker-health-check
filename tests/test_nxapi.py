@@ -7,6 +7,7 @@ from .models import nxapi_expected_outputs
 
 log = logging.getLogger(__name__)
 
+
 class TestNxapiInit:
     def test_basic_init(self):
         example_ip = "127.0.0.1"
@@ -186,7 +187,7 @@ class TestNxapiShowCommands:
         )
 
         assert nxapi_conn.nxos_version == "7.0(3)I7(5a)"
-    
+
     @responses.activate
     def test_check_interface_counters(self):
         def nxapi_callback(request):
@@ -196,23 +197,23 @@ class TestNxapiShowCommands:
                 return (
                     200,
                     {"content-type": "application/json"},
-                    json.dumps(resp_json)
+                    json.dumps(resp_json),
                 )
             elif payload["ins_api"]["input"] == "show interface counters errors":
                 resp_json = nxapi_expected_outputs.NXAPI_SHOW_INTERFACE_COUNTERS_ERRORS
                 return (
                     200,
                     {"content-type": "application/json"},
-                    json.dumps(resp_json)
+                    json.dumps(resp_json),
                 )
             else:
                 return (503, {}, None)
-        
+
         responses.add_callback(
             responses.POST,
             "https://127.0.0.1/ins",
             callback=nxapi_callback,
-            content_type="application/json"
+            content_type="application/json",
         )
 
         example_ip = "127.0.0.1"

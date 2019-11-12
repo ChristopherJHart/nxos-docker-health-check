@@ -136,7 +136,7 @@ class NXAPI:
         # To optimize further analysis, we'll segregate the two types of counters into two separate dictionaries.
         # First, let's get normal counters and populate our interface data
         counts = self.send_show_command("show interface counters")
-        # These are split in two groups - RX, and TX. 
+        # These are split in two groups - RX, and TX.
         # Let's start with RX
         returned_rx_count_info = counts["ins_api"]["outputs"]["output"]["body"][
             "TABLE_rx_counters"
@@ -232,17 +232,23 @@ class NXAPI:
 
     def check_intf_status(self):
         intf_status = self.send_show_command("show interface status")
-        returned_intf_status = intf_status["ins_api"]["outputs"]["output"]["body"]["TABLE_interface"]["ROW_interface"]
+        returned_intf_status = intf_status["ins_api"]["outputs"]["output"]["body"][
+            "TABLE_interface"
+        ]["ROW_interface"]
         for intf_data in returned_intf_status:
             intf_name = intf_data["interface"]
             if intf_name in self.interfaces.keys():
                 self.interfaces[intf_name]["status"] = {}
-                self.interfaces[intf_name]["status"]["name"] = intf_data.get("name", "N/A")
+                self.interfaces[intf_name]["status"]["name"] = intf_data.get(
+                    "name", "N/A"
+                )
                 self.interfaces[intf_name]["status"]["state"] = intf_data["state"]
                 self.interfaces[intf_name]["status"]["vlan"] = intf_data["vlan"]
                 self.interfaces[intf_name]["status"]["duplex"] = intf_data["duplex"]
                 self.interfaces[intf_name]["status"]["speed"] = intf_data["speed"]
-                self.interfaces[intf_name]["status"]["type"] = intf_data.get("type", "N/A")
+                self.interfaces[intf_name]["status"]["type"] = intf_data.get(
+                    "type", "N/A"
+                )
 
     class ConnectionRefused(Exception):
         pass

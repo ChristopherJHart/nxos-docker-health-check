@@ -338,584 +338,572 @@ NXAPI_SHOW_MODULE_EOR_OUTPUT = {
 }
 
 NXAPI_SHOW_INTERFACE_COUNTERS = {
-  "ins_api": {
-    "type": "cli_show",
-    "version": "1.0",
-    "sid": "eoc",
-    "outputs": {
-      "output": {
-        "input": "show interface counters",
-        "msg": "Success",
-        "code": "200",
-        "body": {
-          "TABLE_rx_counters": {
-            "ROW_rx_counters": [
-              {
-                "interface_rx": "mgmt0",
-                "eth_inpkts": 266806619,
-                "eth_inucast": 1344041
-              },
-              {
-                "interface_rx": "Ethernet1/1",
-                "eth_inbytes": 288825287,
-                "eth_inucast": 73625
-              },
-              {
-                "interface_rx": "Ethernet1/2",
-                "eth_inbytes": 1900871,
-                "eth_inucast": 0
-              },
-              {
-                "interface_rx": "mgmt0",
-                "eth_inmcast": 608813,
-                "eth_inbcast": 133992
-              },
-              {
-                "interface_rx": "Ethernet1/1",
-                "eth_inmcast": 2805707,
-                "eth_inbcast": 3
-              },
-              {
-                "interface_rx": "Ethernet1/2",
-                "eth_inmcast": 8061,
-                "eth_inbcast": 0
-              },
-            ]
-          },
-          "TABLE_tx_counters": {
-            "ROW_tx_counters": [
-              {
-                "interface_tx": "mgmt0",
-                "eth_outpkts": 331850552,
-                "eth_outucast": 1308143
-              },
-              {
-                "interface_tx": "Ethernet1/1",
-                "eth_outbytes": 225239460,
-                "eth_outucast": 8286
-              },
-              {
-                "interface_tx": "Ethernet1/2",
-                "eth_outbytes": 1955299,
-                "eth_outucast": 0
-              },
-              {
-                "interface_tx": "mgmt0",
-                "eth_outmcast": 0,
-                "eth_outbcast": 31
-              },
-              {
-                "interface_tx": "Ethernet1/1",
-                "eth_outmcast": 2821973,
-                "eth_outbcast": 2
-              },
-              {
-                "interface_tx": "Ethernet1/2",
-                "eth_outmcast": 8870,
-                "eth_outbcast": 0
-              },
-            ]
-          }
-        }
-      }
+    "ins_api": {
+        "type": "cli_show",
+        "version": "1.0",
+        "sid": "eoc",
+        "outputs": {
+            "output": {
+                "input": "show interface counters",
+                "msg": "Success",
+                "code": "200",
+                "body": {
+                    "TABLE_rx_counters": {
+                        "ROW_rx_counters": [
+                            {
+                                "interface_rx": "mgmt0",
+                                "eth_inpkts": 266806619,
+                                "eth_inucast": 1344041,
+                            },
+                            {
+                                "interface_rx": "Ethernet1/1",
+                                "eth_inbytes": 288825287,
+                                "eth_inucast": 73625,
+                            },
+                            {
+                                "interface_rx": "Ethernet1/2",
+                                "eth_inbytes": 1900871,
+                                "eth_inucast": 0,
+                            },
+                            {
+                                "interface_rx": "mgmt0",
+                                "eth_inmcast": 608813,
+                                "eth_inbcast": 133992,
+                            },
+                            {
+                                "interface_rx": "Ethernet1/1",
+                                "eth_inmcast": 2805707,
+                                "eth_inbcast": 3,
+                            },
+                            {
+                                "interface_rx": "Ethernet1/2",
+                                "eth_inmcast": 8061,
+                                "eth_inbcast": 0,
+                            },
+                        ]
+                    },
+                    "TABLE_tx_counters": {
+                        "ROW_tx_counters": [
+                            {
+                                "interface_tx": "mgmt0",
+                                "eth_outpkts": 331850552,
+                                "eth_outucast": 1308143,
+                            },
+                            {
+                                "interface_tx": "Ethernet1/1",
+                                "eth_outbytes": 225239460,
+                                "eth_outucast": 8286,
+                            },
+                            {
+                                "interface_tx": "Ethernet1/2",
+                                "eth_outbytes": 1955299,
+                                "eth_outucast": 0,
+                            },
+                            {
+                                "interface_tx": "mgmt0",
+                                "eth_outmcast": 0,
+                                "eth_outbcast": 31,
+                            },
+                            {
+                                "interface_tx": "Ethernet1/1",
+                                "eth_outmcast": 2821973,
+                                "eth_outbcast": 2,
+                            },
+                            {
+                                "interface_tx": "Ethernet1/2",
+                                "eth_outmcast": 8870,
+                                "eth_outbcast": 0,
+                            },
+                        ]
+                    },
+                },
+            }
+        },
     }
-  }
 }
 
 NXAPI_SHOW_INTERFACE_COUNTERS_ERRORS = {
-  "ins_api": {
-    "type": "cli_show",
-    "version": "1.0",
-    "sid": "eoc",
-    "outputs": {
-      "output": {
-        "input": "show interface counters errors",
-        "msg": "Success",
-        "code": "200",
-        "body": {
-          "TABLE_interface": {
-            "ROW_interface": [
-              {
-                "interface": "mgmt0",
-                "eth_align_err": 0,
-                "eth_fcs_err": 0
-              },
-              {
-                "interface": "Ethernet1/1",
-                "eth_align_err": 0,
-                "eth_fcs_err": 0,
-                "eth_xmit_err": 0,
-                "eth_rcv_err": 15,
-                "eth_undersize": 0,
-                "eth_outdisc": 0
-              },
-              {
-                "interface": "Ethernet1/2",
-                "eth_align_err": 0,
-                "eth_fcs_err": 0,
-                "eth_xmit_err": 0,
-                "eth_rcv_err": 0,
-                "eth_undersize": 0,
-                "eth_outdisc": 0
-              },
-              {
-                "interface": "mgmt0",
-                "eth_single_col": 0,
-                "eth_multi_col": 0,
-                "eth_late_col": 0,
-                "eth_excess_col": 0
-              },
-              {
-                "interface": "Ethernet1/1",
-                "eth_single_col": 0,
-                "eth_multi_col": 0,
-                "eth_late_col": 0,
-                "eth_excess_col": 0,
-                "eth_carri_sen": 0,
-                "eth_runts": 0
-              },
-              {
-                "interface": "Ethernet1/2",
-                "eth_single_col": 0,
-                "eth_multi_col": 0,
-                "eth_late_col": 0,
-                "eth_excess_col": 0,
-                "eth_carri_sen": 0,
-                "eth_runts": 0
-              },
-              {
-                "interface": "mgmt0",
-                "eth_giants": 0,
-                "eth_sqetest_err": 0,
-                "eth_deferred_tx": 0,
-                "eth_inmactx_err": 0,
-                "eth_inmacrx_err": 0,
-                "eth_symbol_err": 0
-              },
-              {
-                "interface": "Ethernet1/1",
-                "eth_giants": 15,
-                "eth_deferred_tx": 0,
-                "eth_inmactx_err": 0,
-                "eth_inmacrx_err": 0,
-                "eth_symbol_err": 0
-              },
-              {
-                "interface": "Ethernet1/2",
-                "eth_giants": 0,
-                "eth_deferred_tx": 0,
-                "eth_inmactx_err": 0,
-                "eth_inmacrx_err": 0,
-                "eth_symbol_err": 0
-              },
-            ]
-          }
-        }
-      }
+    "ins_api": {
+        "type": "cli_show",
+        "version": "1.0",
+        "sid": "eoc",
+        "outputs": {
+            "output": {
+                "input": "show interface counters errors",
+                "msg": "Success",
+                "code": "200",
+                "body": {
+                    "TABLE_interface": {
+                        "ROW_interface": [
+                            {
+                                "interface": "mgmt0",
+                                "eth_align_err": 0,
+                                "eth_fcs_err": 0,
+                            },
+                            {
+                                "interface": "Ethernet1/1",
+                                "eth_align_err": 0,
+                                "eth_fcs_err": 0,
+                                "eth_xmit_err": 0,
+                                "eth_rcv_err": 15,
+                                "eth_undersize": 0,
+                                "eth_outdisc": 0,
+                            },
+                            {
+                                "interface": "Ethernet1/2",
+                                "eth_align_err": 0,
+                                "eth_fcs_err": 0,
+                                "eth_xmit_err": 0,
+                                "eth_rcv_err": 0,
+                                "eth_undersize": 0,
+                                "eth_outdisc": 0,
+                            },
+                            {
+                                "interface": "mgmt0",
+                                "eth_single_col": 0,
+                                "eth_multi_col": 0,
+                                "eth_late_col": 0,
+                                "eth_excess_col": 0,
+                            },
+                            {
+                                "interface": "Ethernet1/1",
+                                "eth_single_col": 0,
+                                "eth_multi_col": 0,
+                                "eth_late_col": 0,
+                                "eth_excess_col": 0,
+                                "eth_carri_sen": 0,
+                                "eth_runts": 0,
+                            },
+                            {
+                                "interface": "Ethernet1/2",
+                                "eth_single_col": 0,
+                                "eth_multi_col": 0,
+                                "eth_late_col": 0,
+                                "eth_excess_col": 0,
+                                "eth_carri_sen": 0,
+                                "eth_runts": 0,
+                            },
+                            {
+                                "interface": "mgmt0",
+                                "eth_giants": 0,
+                                "eth_sqetest_err": 0,
+                                "eth_deferred_tx": 0,
+                                "eth_inmactx_err": 0,
+                                "eth_inmacrx_err": 0,
+                                "eth_symbol_err": 0,
+                            },
+                            {
+                                "interface": "Ethernet1/1",
+                                "eth_giants": 15,
+                                "eth_deferred_tx": 0,
+                                "eth_inmactx_err": 0,
+                                "eth_inmacrx_err": 0,
+                                "eth_symbol_err": 0,
+                            },
+                            {
+                                "interface": "Ethernet1/2",
+                                "eth_giants": 0,
+                                "eth_deferred_tx": 0,
+                                "eth_inmactx_err": 0,
+                                "eth_inmacrx_err": 0,
+                                "eth_symbol_err": 0,
+                            },
+                        ]
+                    }
+                },
+            }
+        },
     }
-  }
 }
 
 NXAPI_SHOW_COPP_COUNTERS_TOR = {
-  "ins_api": {
-    "type": "cli_show",
-    "version": "1.0",
-    "sid": "eoc",
-    "outputs": {
-      "output": {
-        "input": "show policy-map interface control-plane",
-        "msg": "Success",
-        "code": "200",
-        "body": {
-          "pmap-name": "copp-system-p-policy-strict",
-          "TABLE_cmap": {
-            "ROW_cmap": [
-              {
-                "cmap-key": "copp-system-p-class-l3uc-data",
-                "cmap-name-out": "copp-system-p-class-l3uc-data",
-                "opt_any_or_all": "match-any",
-                "set_vld_flg": 1,
-                "cir": "800",
-                "opt_kbps_mbps_gbps_pps_cir": "kbps",
-                "bc": "32000",
-                "opt_kbytes_mbytes_gbytes_bc": "bytes",
-                "TABLE_slot": {
-                  "ROW_slot": {
-                    "slot-no-out": 1,
-                    "conform-bytes": "0",
-                    "opt_drop_transmit_conform": "transmit",
-                    "violate-bytes": "0",
-                    "opt_drop_transmit_violate": "drop"
-                  }
+    "ins_api": {
+        "type": "cli_show",
+        "version": "1.0",
+        "sid": "eoc",
+        "outputs": {
+            "output": {
+                "input": "show policy-map interface control-plane",
+                "msg": "Success",
+                "code": "200",
+                "body": {
+                    "pmap-name": "copp-system-p-policy-strict",
+                    "TABLE_cmap": {
+                        "ROW_cmap": [
+                            {
+                                "cmap-key": "copp-system-p-class-l3uc-data",
+                                "cmap-name-out": "copp-system-p-class-l3uc-data",
+                                "opt_any_or_all": "match-any",
+                                "set_vld_flg": 1,
+                                "cir": "800",
+                                "opt_kbps_mbps_gbps_pps_cir": "kbps",
+                                "bc": "32000",
+                                "opt_kbytes_mbytes_gbytes_bc": "bytes",
+                                "TABLE_slot": {
+                                    "ROW_slot": {
+                                        "slot-no-out": 1,
+                                        "conform-bytes": "0",
+                                        "opt_drop_transmit_conform": "transmit",
+                                        "violate-bytes": "0",
+                                        "opt_drop_transmit_violate": "drop",
+                                    }
+                                },
+                                "cos": {"cos-val": 1},
+                                "TABLE_match": {
+                                    "ROW_match": {
+                                        "match-key": 1,
+                                        "exception": {"opt_match_excpt": "glean"},
+                                    }
+                                },
+                            },
+                            {
+                                "cmap-key": "copp-system-p-class-critical",
+                                "cmap-name-out": "copp-system-p-class-critical",
+                                "opt_any_or_all": "match-any",
+                                "set_vld_flg": 1,
+                                "cir": "36000",
+                                "opt_kbps_mbps_gbps_pps_cir": "kbps",
+                                "bc": "1280000",
+                                "opt_kbytes_mbytes_gbytes_bc": "bytes",
+                                "TABLE_slot": {
+                                    "ROW_slot": {
+                                        "slot-no-out": 1,
+                                        "conform-bytes": "29434960",
+                                        "opt_drop_transmit_conform": "transmit",
+                                        "violate-bytes": "0",
+                                        "opt_drop_transmit_violate": "drop",
+                                    }
+                                },
+                                "cos": {"cos-val": 7},
+                                "TABLE_match": {
+                                    "ROW_match": [
+                                        {
+                                            "match-key": 1,
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-bgp"
+                                            },
+                                        },
+                                        {
+                                            "match-key": 2,
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-rip"
+                                            },
+                                        },
+                                        {
+                                            "match-key": 3,
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-vpc"
+                                            },
+                                        },
+                                        {
+                                            "match-key": 4,
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-bgp6"
+                                            },
+                                        },
+                                        {
+                                            "match-key": 5,
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-ospf"
+                                            },
+                                        },
+                                        {
+                                            "match-key": 6,
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-rip6"
+                                            },
+                                        },
+                                        {
+                                            "match-key": 7,
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-eigrp"
+                                            },
+                                        },
+                                        {
+                                            "match-key": 8,
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-ospf6"
+                                            },
+                                        },
+                                        {
+                                            "match-key": 9,
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-eigrp6"
+                                            },
+                                        },
+                                        {
+                                            "match-key": 10,
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-auto-rp"
+                                            },
+                                        },
+                                        {
+                                            "match-key": 11,
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-mac-l3-isis"
+                                            },
+                                        },
+                                    ]
+                                },
+                            },
+                        ]
+                    },
                 },
-                "cos": {
-                  "cos-val": 1
-                },
-                "TABLE_match": {
-                  "ROW_match": {
-                    "match-key": 1,
-                    "exception": {
-                      "opt_match_excpt": "glean"
-                    }
-                  }
-                }
-              },
-              {
-                "cmap-key": "copp-system-p-class-critical",
-                "cmap-name-out": "copp-system-p-class-critical",
-                "opt_any_or_all": "match-any",
-                "set_vld_flg": 1,
-                "cir": "36000",
-                "opt_kbps_mbps_gbps_pps_cir": "kbps",
-                "bc": "1280000",
-                "opt_kbytes_mbytes_gbytes_bc": "bytes",
-                "TABLE_slot": {
-                  "ROW_slot": {
-                    "slot-no-out": 1,
-                    "conform-bytes": "29434960",
-                    "opt_drop_transmit_conform": "transmit",
-                    "violate-bytes": "0",
-                    "opt_drop_transmit_violate": "drop"
-                  }
-                },
-                "cos": {
-                  "cos-val": 7
-                },
-                "TABLE_match": {
-                  "ROW_match": [
-                    {
-                      "match-key": 1,
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-bgp"
-                      }
-                    },
-                    {
-                      "match-key": 2,
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-rip"
-                      }
-                    },
-                    {
-                      "match-key": 3,
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-vpc"
-                      }
-                    },
-                    {
-                      "match-key": 4,
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-bgp6"
-                      }
-                    },
-                    {
-                      "match-key": 5,
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-ospf"
-                      }
-                    },
-                    {
-                      "match-key": 6,
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-rip6"
-                      }
-                    },
-                    {
-                      "match-key": 7,
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-eigrp"
-                      }
-                    },
-                    {
-                      "match-key": 8,
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-ospf6"
-                      }
-                    },
-                    {
-                      "match-key": 9,
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-eigrp6"
-                      }
-                    },
-                    {
-                      "match-key": 10,
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-auto-rp"
-                      }
-                    },
-                    {
-                      "match-key": 11,
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-mac-l3-isis"
-                      }
-                    }
-                  ]
-                }
-              },
-            ]
-          }
-        }
-      }
+            }
+        },
     }
-  }
 }
 
 NXAPI_SHOW_COPP_COUNTERS_EOR = {
-  "ins_api": {
-    "type": "cli_show",
-    "version": "1.0",
-    "sid": "eoc",
-    "outputs": {
-      "output": {
-        "input": "show policy-map interface control-plane",
-        "msg": "Success",
-        "code": "200",
-        "body": {
-          "pmap-name": "copp-system-p-policy-strict",
-          "TABLE_cmap": {
-            "ROW_cmap": [
-              {
-                "cmap-key": "copp-system-p-class-l3uc-data",
-                "cmap-name-out": "copp-system-p-class-l3uc-data",
-                "opt_any_or_all": "match-any",
-                "set_vld_flg": "1",
-                "cir": "250",
-                "opt_kbps_mbps_gbps_pps_cir": "pps",
-                "bc": "32",
-                "opt_kbytes_mbytes_gbytes_bc": "packets",
-                "TABLE_slot": {
-                  "ROW_slot": [
-                    {
-                      "slot-no-out": "1",
-                      "conform-pkts": "0",
-                      "opt_drop_transmit_conform": "transmit",
-                      "violate-pkts": "0",
-                      "opt_drop_transmit_violate": "drop"
+    "ins_api": {
+        "type": "cli_show",
+        "version": "1.0",
+        "sid": "eoc",
+        "outputs": {
+            "output": {
+                "input": "show policy-map interface control-plane",
+                "msg": "Success",
+                "code": "200",
+                "body": {
+                    "pmap-name": "copp-system-p-policy-strict",
+                    "TABLE_cmap": {
+                        "ROW_cmap": [
+                            {
+                                "cmap-key": "copp-system-p-class-l3uc-data",
+                                "cmap-name-out": "copp-system-p-class-l3uc-data",
+                                "opt_any_or_all": "match-any",
+                                "set_vld_flg": "1",
+                                "cir": "250",
+                                "opt_kbps_mbps_gbps_pps_cir": "pps",
+                                "bc": "32",
+                                "opt_kbytes_mbytes_gbytes_bc": "packets",
+                                "TABLE_slot": {
+                                    "ROW_slot": [
+                                        {
+                                            "slot-no-out": "1",
+                                            "conform-pkts": "0",
+                                            "opt_drop_transmit_conform": "transmit",
+                                            "violate-pkts": "0",
+                                            "opt_drop_transmit_violate": "drop",
+                                        },
+                                        {
+                                            "slot-no-out": "3",
+                                            "conform-pkts": "0",
+                                            "opt_drop_transmit_conform": "transmit",
+                                            "violate-pkts": "0",
+                                            "opt_drop_transmit_violate": "drop",
+                                        },
+                                        {
+                                            "slot-no-out": "4",
+                                            "conform-pkts": "0",
+                                            "opt_drop_transmit_conform": "transmit",
+                                            "violate-pkts": "0",
+                                            "opt_drop_transmit_violate": "drop",
+                                        },
+                                        {
+                                            "slot-no-out": "21",
+                                            "conform-pkts": "0",
+                                            "opt_drop_transmit_conform": "transmit",
+                                            "violate-pkts": "0",
+                                            "opt_drop_transmit_violate": "drop",
+                                        },
+                                        {
+                                            "slot-no-out": "22",
+                                            "conform-pkts": "0",
+                                            "opt_drop_transmit_conform": "transmit",
+                                            "violate-pkts": "0",
+                                            "opt_drop_transmit_violate": "drop",
+                                        },
+                                        {
+                                            "slot-no-out": "23",
+                                            "conform-pkts": "0",
+                                            "opt_drop_transmit_conform": "transmit",
+                                            "violate-pkts": "0",
+                                            "opt_drop_transmit_violate": "drop",
+                                        },
+                                        {
+                                            "slot-no-out": "24",
+                                            "conform-pkts": "0",
+                                            "opt_drop_transmit_conform": "transmit",
+                                            "violate-pkts": "0",
+                                            "opt_drop_transmit_violate": "drop",
+                                        },
+                                        {
+                                            "slot-no-out": "25",
+                                            "conform-pkts": "0",
+                                            "opt_drop_transmit_conform": "transmit",
+                                            "violate-pkts": "0",
+                                            "opt_drop_transmit_violate": "drop",
+                                        },
+                                        {
+                                            "slot-no-out": "26",
+                                            "conform-pkts": "0",
+                                            "opt_drop_transmit_conform": "transmit",
+                                            "violate-pkts": "0",
+                                            "opt_drop_transmit_violate": "drop",
+                                        },
+                                    ]
+                                },
+                                "cos": {"cos-val": "1"},
+                                "TABLE_match": {
+                                    "ROW_match": {
+                                        "match-key": "1",
+                                        "exception": {"opt_match_excpt": "glean"},
+                                    }
+                                },
+                            },
+                            {
+                                "cmap-key": "copp-system-p-class-critical",
+                                "cmap-name-out": "copp-system-p-class-critical",
+                                "opt_any_or_all": "match-any",
+                                "set_vld_flg": "1",
+                                "cir": "19000",
+                                "opt_kbps_mbps_gbps_pps_cir": "pps",
+                                "bc": "128",
+                                "opt_kbytes_mbytes_gbytes_bc": "packets",
+                                "TABLE_slot": {
+                                    "ROW_slot": [
+                                        {
+                                            "slot-no-out": "1",
+                                            "conform-pkts": "2206859",
+                                            "opt_drop_transmit_conform": "transmit",
+                                            "violate-pkts": "0",
+                                            "opt_drop_transmit_violate": "drop",
+                                        },
+                                        {
+                                            "slot-no-out": "3",
+                                            "conform-pkts": "0",
+                                            "opt_drop_transmit_conform": "transmit",
+                                            "violate-pkts": "0",
+                                            "opt_drop_transmit_violate": "drop",
+                                        },
+                                        {
+                                            "slot-no-out": "4",
+                                            "conform-pkts": "0",
+                                            "opt_drop_transmit_conform": "transmit",
+                                            "violate-pkts": "0",
+                                            "opt_drop_transmit_violate": "drop",
+                                        },
+                                        {
+                                            "slot-no-out": "21",
+                                            "conform-pkts": "0",
+                                            "opt_drop_transmit_conform": "transmit",
+                                            "violate-pkts": "0",
+                                            "opt_drop_transmit_violate": "drop",
+                                        },
+                                        {
+                                            "slot-no-out": "22",
+                                            "conform-pkts": "2206857",
+                                            "opt_drop_transmit_conform": "transmit",
+                                            "violate-pkts": "0",
+                                            "opt_drop_transmit_violate": "drop",
+                                        },
+                                        {
+                                            "slot-no-out": "23",
+                                            "conform-pkts": "0",
+                                            "opt_drop_transmit_conform": "transmit",
+                                            "violate-pkts": "0",
+                                            "opt_drop_transmit_violate": "drop",
+                                        },
+                                        {
+                                            "slot-no-out": "24",
+                                            "conform-pkts": "0",
+                                            "opt_drop_transmit_conform": "transmit",
+                                            "violate-pkts": "0",
+                                            "opt_drop_transmit_violate": "drop",
+                                        },
+                                        {
+                                            "slot-no-out": "25",
+                                            "conform-pkts": "0",
+                                            "opt_drop_transmit_conform": "transmit",
+                                            "violate-pkts": "0",
+                                            "opt_drop_transmit_violate": "drop",
+                                        },
+                                        {
+                                            "slot-no-out": "26",
+                                            "conform-pkts": "0",
+                                            "opt_drop_transmit_conform": "transmit",
+                                            "violate-pkts": "0",
+                                            "opt_drop_transmit_violate": "drop",
+                                        },
+                                    ]
+                                },
+                                "cos": {"cos-val": "7"},
+                                "TABLE_match": {
+                                    "ROW_match": [
+                                        {
+                                            "match-key": "1",
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-bgp"
+                                            },
+                                        },
+                                        {
+                                            "match-key": "2",
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-rip"
+                                            },
+                                        },
+                                        {
+                                            "match-key": "3",
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-vpc"
+                                            },
+                                        },
+                                        {
+                                            "match-key": "4",
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-bgp6"
+                                            },
+                                        },
+                                        {
+                                            "match-key": "5",
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-ospf"
+                                            },
+                                        },
+                                        {
+                                            "match-key": "6",
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-rip6"
+                                            },
+                                        },
+                                        {
+                                            "match-key": "7",
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-eigrp"
+                                            },
+                                        },
+                                        {
+                                            "match-key": "8",
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-ospf6"
+                                            },
+                                        },
+                                        {
+                                            "match-key": "9",
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-eigrp6"
+                                            },
+                                        },
+                                        {
+                                            "match-key": "10",
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-auto-rp"
+                                            },
+                                        },
+                                        {
+                                            "match-key": "11",
+                                            "access_grp": {
+                                                "acc_grp_name": "copp-system-p-acl-mac-l3-isis"
+                                            },
+                                        },
+                                    ]
+                                },
+                            },
+                        ]
                     },
-                    {
-                      "slot-no-out": "3",
-                      "conform-pkts": "0",
-                      "opt_drop_transmit_conform": "transmit",
-                      "violate-pkts": "0",
-                      "opt_drop_transmit_violate": "drop"
-                    },
-                    {
-                      "slot-no-out": "4",
-                      "conform-pkts": "0",
-                      "opt_drop_transmit_conform": "transmit",
-                      "violate-pkts": "0",
-                      "opt_drop_transmit_violate": "drop"
-                    },
-                    {
-                      "slot-no-out": "21",
-                      "conform-pkts": "0",
-                      "opt_drop_transmit_conform": "transmit",
-                      "violate-pkts": "0",
-                      "opt_drop_transmit_violate": "drop"
-                    },
-                    {
-                      "slot-no-out": "22",
-                      "conform-pkts": "0",
-                      "opt_drop_transmit_conform": "transmit",
-                      "violate-pkts": "0",
-                      "opt_drop_transmit_violate": "drop"
-                    },
-                    {
-                      "slot-no-out": "23",
-                      "conform-pkts": "0",
-                      "opt_drop_transmit_conform": "transmit",
-                      "violate-pkts": "0",
-                      "opt_drop_transmit_violate": "drop"
-                    },
-                    {
-                      "slot-no-out": "24",
-                      "conform-pkts": "0",
-                      "opt_drop_transmit_conform": "transmit",
-                      "violate-pkts": "0",
-                      "opt_drop_transmit_violate": "drop"
-                    },
-                    {
-                      "slot-no-out": "25",
-                      "conform-pkts": "0",
-                      "opt_drop_transmit_conform": "transmit",
-                      "violate-pkts": "0",
-                      "opt_drop_transmit_violate": "drop"
-                    },
-                    {
-                      "slot-no-out": "26",
-                      "conform-pkts": "0",
-                      "opt_drop_transmit_conform": "transmit",
-                      "violate-pkts": "0",
-                      "opt_drop_transmit_violate": "drop"
-                    }
-                  ]
                 },
-                "cos": {
-                  "cos-val": "1"
-                },
-                "TABLE_match": {
-                  "ROW_match": {
-                    "match-key": "1",
-                    "exception": {
-                      "opt_match_excpt": "glean"
-                    }
-                  }
-                }
-              },
-              {
-                "cmap-key": "copp-system-p-class-critical",
-                "cmap-name-out": "copp-system-p-class-critical",
-                "opt_any_or_all": "match-any",
-                "set_vld_flg": "1",
-                "cir": "19000",
-                "opt_kbps_mbps_gbps_pps_cir": "pps",
-                "bc": "128",
-                "opt_kbytes_mbytes_gbytes_bc": "packets",
-                "TABLE_slot": {
-                  "ROW_slot": [
-                    {
-                      "slot-no-out": "1",
-                      "conform-pkts": "2206859",
-                      "opt_drop_transmit_conform": "transmit",
-                      "violate-pkts": "0",
-                      "opt_drop_transmit_violate": "drop"
-                    },
-                    {
-                      "slot-no-out": "3",
-                      "conform-pkts": "0",
-                      "opt_drop_transmit_conform": "transmit",
-                      "violate-pkts": "0",
-                      "opt_drop_transmit_violate": "drop"
-                    },
-                    {
-                      "slot-no-out": "4",
-                      "conform-pkts": "0",
-                      "opt_drop_transmit_conform": "transmit",
-                      "violate-pkts": "0",
-                      "opt_drop_transmit_violate": "drop"
-                    },
-                    {
-                      "slot-no-out": "21",
-                      "conform-pkts": "0",
-                      "opt_drop_transmit_conform": "transmit",
-                      "violate-pkts": "0",
-                      "opt_drop_transmit_violate": "drop"
-                    },
-                    {
-                      "slot-no-out": "22",
-                      "conform-pkts": "2206857",
-                      "opt_drop_transmit_conform": "transmit",
-                      "violate-pkts": "0",
-                      "opt_drop_transmit_violate": "drop"
-                    },
-                    {
-                      "slot-no-out": "23",
-                      "conform-pkts": "0",
-                      "opt_drop_transmit_conform": "transmit",
-                      "violate-pkts": "0",
-                      "opt_drop_transmit_violate": "drop"
-                    },
-                    {
-                      "slot-no-out": "24",
-                      "conform-pkts": "0",
-                      "opt_drop_transmit_conform": "transmit",
-                      "violate-pkts": "0",
-                      "opt_drop_transmit_violate": "drop"
-                    },
-                    {
-                      "slot-no-out": "25",
-                      "conform-pkts": "0",
-                      "opt_drop_transmit_conform": "transmit",
-                      "violate-pkts": "0",
-                      "opt_drop_transmit_violate": "drop"
-                    },
-                    {
-                      "slot-no-out": "26",
-                      "conform-pkts": "0",
-                      "opt_drop_transmit_conform": "transmit",
-                      "violate-pkts": "0",
-                      "opt_drop_transmit_violate": "drop"
-                    }
-                  ]
-                },
-                "cos": {
-                  "cos-val": "7"
-                },
-                "TABLE_match": {
-                  "ROW_match": [
-                    {
-                      "match-key": "1",
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-bgp"
-                      }
-                    },
-                    {
-                      "match-key": "2",
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-rip"
-                      }
-                    },
-                    {
-                      "match-key": "3",
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-vpc"
-                      }
-                    },
-                    {
-                      "match-key": "4",
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-bgp6"
-                      }
-                    },
-                    {
-                      "match-key": "5",
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-ospf"
-                      }
-                    },
-                    {
-                      "match-key": "6",
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-rip6"
-                      }
-                    },
-                    {
-                      "match-key": "7",
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-eigrp"
-                      }
-                    },
-                    {
-                      "match-key": "8",
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-ospf6"
-                      }
-                    },
-                    {
-                      "match-key": "9",
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-eigrp6"
-                      }
-                    },
-                    {
-                      "match-key": "10",
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-auto-rp"
-                      }
-                    },
-                    {
-                      "match-key": "11",
-                      "access_grp": {
-                        "acc_grp_name": "copp-system-p-acl-mac-l3-isis"
-                      }
-                    }
-                  ]
-                }
-              },
-            ]
-          }
-        }
-      }
+            }
+        },
     }
-  }
 }
