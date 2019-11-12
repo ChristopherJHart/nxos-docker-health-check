@@ -132,111 +132,59 @@ class NXAPI:
         self._get_module_diagnostic_status_from_json(sh_mod)
 
     def check_device_error_counters(self):
-        interface_data = {}
         # To get accurate information, we need to get both error counters as well as normal counters for each interface.
         # To optimize further analysis, we'll segregate the two types of counters into two separate dictionaries.
         # First, let's get normal counters and populate our interface data
         counts = self.send_show_command("show interface counters")
-        # These are split in two groups - RX, and TX. Let's start with RX
+        # These are split in two groups - RX, and TX. 
+        # Let's start with RX
         returned_rx_count_info = counts["ins_api"]["outputs"]["output"]["body"][
             "TABLE_rx_counters"
         ]["ROW_rx_counters"]
-        # This data looks like this:
-        # [
-        #   {
-        #     "interface_rx": "Ethernet1/1",
-        #     "eth_inbytes": 239390039,
-        #     "eth_inucast": 72954
-        #   },
-        #   {
-        #     "interface_rx": "Ethernet1/2",
-        #     "eth_inbytes": 249994,
-        #     "eth_inucast": 0
-        #   },
-        # ]
-        rx_intf_names = [intf["interface_rx"] for intf in returned_rx_count_info]
+        # Let's set up our interfaces dictionary first.
+        rx_intf_names = []
+        for intf in returned_rx_count_info:
+            intf_name = intf["interface_rx"]
+            if intf_name not in rx_intf_names:
+                rx_intf_names.append(intf_name)
         for intf in rx_intf_names:
-            interface_data[intf] = {
+            self.interfaces[intf] = {
                 "errors": {},
                 "normal": {},
             }
+        # Now, let's handle RX counters
         for intf_data in returned_rx_count_info:
+            intf_name = intf_data["interface_rx"]
             for key, value in intf_data.items():
                 if "interface_rx" in key:
                     # Remove redundant interface name information
                     continue
-                interface_data[intf_data["interface_rx"]]["normal"][key] = value
-
-        # Now, let's do TX
+                self.interfaces[intf_name]["normal"][key] = value
+        # Now, let's do TX counters
         returned_tx_count_info = counts["ins_api"]["outputs"]["output"]["body"][
             "TABLE_tx_counters"
         ]["ROW_tx_counters"]
-        # This data looks like this:
-        # [
-        #   {
-        #     "interface_tx": "Ethernet1/1",
-        #     "eth_outbytes": 187082262,
-        #     "eth_outucast": 7619
-        #   },
-        #   {
-        #     "interface_tx": "Ethernet1/2",
-        #     "eth_outbytes": 256555,
-        #     "eth_outucast": 0
-        #   },
-        # ]
         for intf_data in returned_tx_count_info:
+            intf_name = intf_data["interface_tx"]
             for key, value in intf_data.items():
                 if "interface_tx" in key:
                     # Remove redundant interface name information
                     continue
-                interface_data[intf_data["interface_tx"]]["normal"][key] = value
+                self.interfaces[intf_name]["normal"][key] = value
         # Next, let's do error counters.
         count_errs = self.send_show_command("show interface counters errors")
         returned_err_info = count_errs["ins_api"]["outputs"]["output"]["body"][
             "TABLE_interface"
         ]["ROW_interface"]
-        # This data looks like this for any single interface:
-        # [
-        #   {
-        #     "interface": "Ethernet1/1",
-        #     "eth_align_err": 0,
-        #     "eth_fcs_err": 0,
-        #     "eth_xmit_err": 0,
-        #     "eth_rcv_err": 0,
-        #     "eth_undersize": 0,
-        #     "eth_outdisc": 0
-        #   },
-        #   {
-        #     "interface": "Ethernet1/1",
-        #     "eth_single_col": 0,
-        #     "eth_multi_col": 0,
-        #     "eth_late_col": 0,
-        #     "eth_excess_col": 0,
-        #     "eth_carri_sen": 0,
-        #     "eth_runts": 0
-        #   },
-        #   {
-        #     "interface": "Ethernet1/1",
-        #     "eth_giants": 0,
-        #     "eth_deferred_tx": 0,
-        #     "eth_inmactx_err": 0,
-        #     "eth_inmacrx_err": 0,
-        #     "eth_symbol_err": 0
-        #   },
-        #   {
-        #     "interface": "Ethernet1/1",
-        #     "eth_indisc": 0
-        #   },
-        # ]
         # Populate each interface with error counter information
         for intf_data in returned_err_info:
+            intf_name = intf_data["interface"]
             for key, value in intf_data.items():
                 if "interface" in key:
                     # Remove redundant interface name information
                     continue
-                interface_data[intf_data["interface"]]["errors"][key] = value
+                self.interfaces[intf_name]["errors"][key] = value
         # We have all the information we need!
-        self.interfaces = interface_data
 
     def check_copp_counters(self):
         copp_counters = self.send_show_command(
@@ -269,7 +217,7 @@ class NXAPI:
                         }
             elif isinstance(slot_info, dict):
                 # If platform is ToR...
-                # Diverge depdning on CloudScale or First-Generation N9Ks
+                # Diverge depending on CloudScale or First-Generation N9Ks
                 if "conform-bytes" in slot_info.keys():
                     self.copp_counters[cmap_name][str(slot_info["slot-no-out"])] = {
                         "conform_bytes": slot_info["conform-bytes"],
@@ -281,6 +229,20 @@ class NXAPI:
                         "conform_bytes": slot_info["conform-pkts"],
                         "violate_bytes": slot_info["violate-pkts"],
                     }
+
+    def check_intf_status(self):
+        intf_status = self.send_show_command("show interface status")
+        returned_intf_status = intf_status["ins_api"]["outputs"]["output"]["body"]["TABLE_interface"]["ROW_interface"]
+        for intf_data in returned_intf_status:
+            intf_name = intf_data["interface"]
+            if intf_name in self.interfaces.keys():
+                self.interfaces[intf_name]["status"] = {}
+                self.interfaces[intf_name]["status"]["name"] = intf_data.get("name", "N/A")
+                self.interfaces[intf_name]["status"]["state"] = intf_data["state"]
+                self.interfaces[intf_name]["status"]["vlan"] = intf_data["vlan"]
+                self.interfaces[intf_name]["status"]["duplex"] = intf_data["duplex"]
+                self.interfaces[intf_name]["status"]["speed"] = intf_data["speed"]
+                self.interfaces[intf_name]["status"]["type"] = intf_data.get("type", "N/A")
 
     class ConnectionRefused(Exception):
         pass

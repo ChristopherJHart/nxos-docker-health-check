@@ -66,7 +66,8 @@ def main():
         report_interfaces(nxapi_conn.interfaces)
         nxapi_conn.check_copp_counters()
         report_copp_counters(nxapi_conn.copp_counters)
-
+        nxapi_conn.check_intf_status()
+        report_intf_status(nxapi_conn.interfaces)
 
 def analyze_configuration(devices, credentials, filename=CFG_FILENAME):
     config = configparser.ConfigParser()
@@ -76,7 +77,6 @@ def analyze_configuration(devices, credentials, filename=CFG_FILENAME):
         devices.append({"name": device_name, "ip": ip})
     credentials["username"] = config["Credentials"]["username"]
     credentials["password"] = config["Credentials"]["password"]
-
 
 def report_interfaces(interfaces):
     issue_found = False
@@ -94,7 +94,6 @@ def report_interfaces(interfaces):
     if not issue_found:
         log.info("[DEV] \tNo non-zero interface error counters")
 
-
 def report_copp_counters(counters):
     issue_found = False
     for cmap in counters.keys():
@@ -111,6 +110,14 @@ def report_copp_counters(counters):
     if not issue_found:
         log.info("[DEV] \tNo non-zero CoPP violation counters")
 
+def report_intf_status(interfaces):
+    issue_found = False
+    for interface in interfaces.keys():
+        if "err-disabled" in interfaces[interface]["status"]["state"]:
+            issue_found = True
+            log.error("[DEV] \tUnexpected status '%s' for interface %s", interfaces[interface]["status"]["state"], interface)
+    if not issue_found:
+        log.info("[DEV] \tNo interfaces in an unexpected status")
 
 def configure_logging(debug_enabled):
     default_cfg = {
