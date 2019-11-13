@@ -1,0 +1,9 @@
+version: "3"
+services:
+  nxos-health-check:
+    image: chart2/nxos-docker-health-check:latest
+    container_name: nxos-health-check
+    environment:
+      - DEBUG=True
+    volumes:
+      - ./example_config.ini:/app/config.ini
